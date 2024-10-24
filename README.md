@@ -2,6 +2,28 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
+In my URL shortener service, I used to develop this in Reactjs. I used a Map to track the relationships between long URLs and their corresponding shortened versions. Here’s how I approached it:
+
+Data Structure: Map
+A Map is ideal for this purpose because it allows me to quickly check if I’ve already created a short URL for a long URL. This makes my application efficient, as it can look things up almost instantly.
+
+1. Generating Short URLs: 
+The function generateShortUrl() generates short URLs by creating a random string of 6 characters, including letters and numbers. This keeps the short URLs concise and easy to remember.
+I recognize that there's a possibility of two different long URLs ending up with the same short URL, and I want to avoid that.
+
+2. Handling Collisions: 
+Inside the shortUrlGenerator(originalUrl) function, if I generate a short URL and discover that it already exists in my Map, I keep generating new ones until I find a unique one. This process guarantees that each long URL has its own distinct short URL.
+
+3. Validating Long URLs: 
+Before I create a short URL, I validate the long URL using the `isUrlValid(urlString)` function to ensure it’s in the correct format. If it's not valid, I throw an error. This helps prevent any issues with incorrect or malformed URLs.
+
+4. Retrieving Existing Short URLs: 
+ Suppose someone tries to shorten a URL that I’ve already processed. In that case, the shortUrlGenerator(originalUrl) function returns the existing short URL associated with that long URL instead of generating a new one. This saves time and keeps everything organized.
+
+In summary, my approach combines a user-friendly interface with a robust system that ensures each long URL is paired with a unique short URL. By using a Map, I can efficiently check for existing URLs and handle potential duplicates. This way, users can quickly and easily shorten their URLs without worrying about errors or duplicates.
+
+
 ## Available Scripts
 
 In the project directory, you can run:
